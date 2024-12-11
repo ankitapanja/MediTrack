@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "DrugProductLine";
+}
+
+<h2>DrugProductLine</h2>
+
+﻿@model IEnumerable<MediTrack.Models.PODrugLine>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DrugTable.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.POHeader.Description)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DrugTable.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.POHeader.Description)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.PODrugLineID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.PODrugLineID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.PODrugLineID })
+            </td>
+        </tr>
+    }
+
+</table>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

@@ -1,0 +1,153 @@
+﻿﻿@model MediTrack.Models.POHeader
+
+
+@{
+    ViewBag.Title = "CreatePO";
+}
+
+<h2>CreatePO</h2>
+
+@using (Html.BeginForm())
+{
+
+
+    <div id="DatalistDrugs" hidden>
+
+        @foreach (var item in ViewBag.DrugTable)
+        {
+            <option value="@item.DrugID">@item.Name </option>
+        }
+
+    </div>
+
+
+    <div class="form-horizontal">
+        <h4>POHeader</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.PODate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PODate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PODate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SupplierID, "SupplierName", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("SupplierName", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SupplierID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+    </div>
+
+    <table id="tblDrugLine" class="table">
+        <tr>
+            <th>
+                Sl. No.
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PODrugLines.First().DrugTable.Name)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.PODrugLines.First().Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PODrugLines.First().Rate)
+            </th>
+
+            <th></th>
+        </tr>
+
+
+        <tr>
+            <td class="slno">
+                1
+            </td>
+            <td>
+                <select drugCombo="unbound" class="form-control" name="PurchaseOrderDrugLines[0].DrugID">
+                </select>
+            </td>
+            <td>
+                <input type="text" class="form-control" name="PurchaseOrderDrugLines[0].Qty">
+            </td>
+            <td>
+                <input type="text" class="form-control" name="PurchaseOrderDrugLines[0].Rate">
+            </td>
+
+            <td class="addnewRowTD">
+                <button id="AddNewRow" type="submit" class="btn btn-primary mb-3">Add New Row</button>
+            </td>
+        </tr>
+
+
+    </table>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Add PO" class="btn btn-primary" />
+        </div>
+    </div>
+
+
+}
+
+@section Scripts
+{
+
+    <script>
+
+        var _SlNo = 0
+
+        $(function () {
+                 BindAddNewButton()
+ })
+
+        function BindAddNewButton() {
+
+            $("#AddNewRow").click(function (e) {
+                e.preventDefault()
+                _SlNo++
+
+                $.ajax({
+                    url: "/Chemist/CreateProductLine/" + _SlNo, // Controller endpoint
+                    type: "GET",
+
+                    success: function (data) {
+                        $(".addnewRowTD").html(" ")
+
+                        $("#tblDrugLine").append(data);
+
+                        BindAddNewButton()
+
+
+                    },
+                    error: function () {
+                        $("#Notify").html("<p>Error loading details.</p>");
+                    }
+                });
+
+
+
+            })
+
+            $("select[drugCombo*='unbound']").html($("#datalistDrugs").html()).attr("drugCombo", "bound")
+        }
+
+
+    </script>
+
+
+}

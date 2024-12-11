@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cbe65d909f844ad7b443de4de6bda98e" Name="Diagram1">
+        <EntityTypeShape EntityType="ClinicoModel.AdviceTable" Width="1.5" PointX="7.5" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicoModel.AppointmentTable" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicoModel.ChemistTable" Width="1.5" PointX="7.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicoModel.DrugRequest" Width="1.5" PointX="10" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicoModel.DrugTable" Width="1.5" PointX="5" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicoModel.PaitentTable" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicoModel.PhysicianTable" Width="1.5" PointX="7.75" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicoModel.PODrugLine" Width="1.5" PointX="7.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicoModel.POHeader" Width="1.5" PointX="5" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicoModel.Prescription" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicoModel.Schedule" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicoModel.SupplierTable" Width="1.5" PointX="2.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicoModel.Usertable" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <AssociationConnector Association="ClinicoModel.FK_AdviceTable_Schedule" ManuallyRouted="false" />
+        <AssociationConnector Association="ClinicoModel.FK_AppointmentTable_PaitentTable" ManuallyRouted="false" />
+        <AssociationConnector Association="ClinicoModel.FK_Schedule_Appointment" ManuallyRouted="false" />
+        <AssociationConnector Association="ClinicoModel.FK_DrugRequest_ChemistTable" ManuallyRouted="false" />
+        <AssociationConnector Association="ClinicoModel.FK_DrugRequest_PhysicianTable" ManuallyRouted="false" />
+        <AssociationConnector Association="ClinicoModel.FK_PODrugLine_DrugTable" ManuallyRouted="false" />
+        <AssociationConnector Association="ClinicoModel.FK_PODrugLine_POHeader" ManuallyRouted="false" />
+        <AssociationConnector Association="ClinicoModel.FK_POHeader_SupplierTable" ManuallyRouted="false" />
+        <AssociationConnector Association="ClinicoModel.FK_Prescription_Prescription" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
